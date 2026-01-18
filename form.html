@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Form</title>
+    <link rel="stylesheet" href="./css/form.css">
+  </head>
+  <body>
+    <section>
+      <div class="form-wrapper">
+        <form>
+          <h2>Register</h2>
+
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Enter your name" id="name" />
+            <p class="error" id="nameError"></p>
+          </div>
+
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" placeholder="Enter number" id="mob" />
+            <p class="error" id="mobError"></p>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" id="mail" />
+            <p class="error" id="mailError"></p>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter password" id="pass" />
+            <p class="error" id="passError"></p>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Jqury cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./js/form.js"></script>
+  </body>
+</html>
