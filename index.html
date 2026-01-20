@@ -8,7 +8,7 @@
   <body>
     <section>
       <div class="form-wrapper">
-        <form>
+        <form action="./action.html">
           <h2>Register</h2>
 
           <div class="form-group">
@@ -33,6 +33,12 @@
             <label>Password</label>
             <input type="password" placeholder="Enter password" id="pass" />
             <p class="error" id="passError"></p>
+          </div>
+
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Enter password" id="cpass" />
+            <p class="error" id="cpassError"></p>
           </div>
 
           <button type="submit">Submit</button>

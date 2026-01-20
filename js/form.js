@@ -3,6 +3,13 @@ $(()=> {
     // $('.mobError').hide();
     // $('.mailError').hide();
     // $('.passError').hide();
+    // $('.cpassError').hide();
+
+    let nameFlag = true;
+    let mobFlag = true;
+    let mailFlag = true;
+    let passFlag = true;
+    let cpassFlag = true;
 
     $('#name').on('keyup',nameChecker);
     function nameChecker() {
@@ -13,11 +20,14 @@ $(()=> {
         if(data.length<1){
             $('#nameError').show()
             $('#nameError').html('Requred Field*')
+            nameFlag = false;
         }else if(!checkReg) {
             $('#nameError').show()
-            $('#nameError').html('Invalid Field')
+            $('#nameError').html('Provide valid name')
+            nameFlag = false;
         }else {
              $('#nameError').hide()
+             nameFlag = true;
         }
     }
 
@@ -30,11 +40,14 @@ $(()=> {
         if(data.length<1){
             $('#mobError').show()
             $('#mobError').html('Requred Field*')
+            mobFlag = false;
         }else if(!checkReg) {
             $('#mobError').show()
-            $('#mobError').html('Invalid Field')
+            $('#mobError').html('Requierd More Numbers')
+            mobFlag = false;
         }else {
              $('#mobError').hide()
+             mobFlag = true;
         }
     }
     $('#mail').on('keyup',mailChecker);
@@ -46,42 +59,70 @@ $(()=> {
         if(data.length<1){
             $('#mailError').show()
             $('#mailError').html('Requred Field*')
+            mailFlag = false;
         }else if(!checkReg) {
             $('#mailError').show()
-            $('#mailError').html('Invalid Field')
+            $('#mailError').html('Invalid email Address')
+            mailFlag = false;
         }else {
              $('#mailError').hide()
+             mailFlag = true;
         }
     }
     $('#pass').on('keyup',passChecker);
     function passChecker() {
-        let data = $('#pass').val();
+        let data1 = $('#pass').val();
         // console.log(data);
-        let passRegex = /^[A-Za-z0-9]{6,20}$/;
-        let checkReg = passRegex.test(data)
-        if(data.length<1){
+        let passRegex = /^[A-Za-z0-9]{6,8}$/;
+        let checkReg = passRegex.test(data1)
+        if(data1.length<1){
             $('#passError').show()
             $('#passError').html('Requred Field*')
+            passFlag = false;
         }else if(!checkReg) {
             $('#passError').show()
-            $('#passError').html('Invalid Field')
+            $('#passError').html('Need Strong Password')
+            passFlag = false;
         }else {
              $('#passError').hide()
+             passFlag = true;
+        }
+    }
+    $('#cpass').on('keyup',cpassChecker);
+    function cpassChecker() {
+        let data1 = $('#pass').val();
+        let data2 = $('#cpass').val();
+        // console.log(data);
+        
+        if(data2.length<1){
+            $('#cpassError').show()
+            $('#cpassError').html('Requred Field*')
+            cpassFlag = false;
+        }else if(data1 !== data2) {
+            $('#cpassError').show()
+            $('#cpassError').html('Password Not Matched')
+            cpassFlag = false;
+        }else {
+             $('#cpassError').hide()
+             cpassFlag = true;
         }
     }
 
     
     $('form').on('submit', function (e) {
-        e.preventDefault();
+        
+        // e.preventDefault();
+        nameChecker();
+        mobChecker();
+        mailChecker();
+        passChecker();
+        cpassChecker();
 
-        let isNameValid = nameChecker();
-        let isMobValid  = mobChecker();
-        let isMailValid = mailChecker();
-        let isPassValid = passChecker();
-
-        if (isNameValid && isMobValid && isMailValid && isPassValid) {
-            alert('Form Submitted Successfully ✅');
-            this.submit(); // or AJAX submit
+        if(!nameFlag || !mobFlag || !mailFlag || !passFlag || !cpassFlag) {
+            return false;
+            alert(`Please Check the form.`)
+        }else {
+            return true;
         }
     });
 });
